@@ -4,6 +4,21 @@ import colegios from '../colegios.js';
 
 
 export const templateHome = () => {
+  const sComunas = (stringComuna) => {
+
+    let selectionComunas = colegios.filter(seLec => seLec.Comuna.includes(stringComuna));
+    console.log("filtra?", selectionComunas)
+    return selectionComunas;
+};
+const seLection = (sComunas) => { 
+    
+    for (let i = 0; i < sComunas.length; i++) {
+      document.getElementById("content").querySelector("#contentSchool");
+      //content.innerHTML += contentSchool ;
+                                  
+     
+     };
+};
     //stringComuna= "";
     //let content2 = document.getElementById("content");
     //content2.innerHTML +=" ";
@@ -11,7 +26,7 @@ export const templateHome = () => {
     const containerHome = document.createElement('div');
 
     let contentOtro = 
-    `<div>
+                     `<div>
                         <main class="stgoView">
                          <div id="selectSchool">
                           <p>¿Dónde quieres buscar colegio?</p>
@@ -51,7 +66,14 @@ export const templateHome = () => {
                              <option id="las Condes">Las Condes</option>
                              <option id="loBarnechea">Lo Barnechea</option>
                               </select>
-                              </div>  
+                              </div>
+                               <div id= "contentSchool>
+                               <div class= "businessCard">
+                                      <div class="img">
+                                       
+
+                                                          </div>
+                               </div>
                                   </main>
                                      <footer>
                                        <h4>Todos los derechos reservados</h4>
@@ -60,69 +82,22 @@ export const templateHome = () => {
     document.getElementById("content").innerHTML = contentOtro;
     let dropDownMenu = document.getElementById("content").querySelector("#selectComuna");
     dropDownMenu.onchange = () => funcionComunas(dropDownMenu);
+    const funcionComunas = (dropDownMenu) => {
+      let stringComuna = dropDownMenu.options[dropDownMenu.selectedIndex].text;
+      console.log("siiiiii", stringComuna)
+      //revisar la funcion seLection con el innerHTML2
+      seLection(sComunas(stringComuna));
+      console.log("hola", stringComuna);
+      //stringComuna= "";
+  };
     //return funcionComunas
-    return containerHome;
 
-    
-};
-
-
-const sComunas = (stringComuna) => {
-
-    let selectionComunas = colegios.filter(seLec => seLec.Comuna.includes(stringComuna));
-    console.log("filtra?", selectionComunas)
-    return selectionComunas;
-}
-const seLection = (sComunas) => { 
-    
-    for (let i = 0; i < sComunas.length; i++) {
-        let content2 = document.getElementById("content");
-        content2.innerHTML += `<div class= "businessCard">
-                                     <div class="img">
-                                      <img src=${sComunas[i].image} </img>
-                                           <p> ${sComunas[i].puntuación}</p>
-                                         </div>
-                                         <div class="contentStyle">
-                                         <h3>Colegio: ${sComunas[i].name}
-                                         <li> ${sComunas[i].Comuna}</li>
-                                         <li> ${sComunas[i].Telefono}</li>
-                                         <li> ${sComunas[i].Email}</li>
-                                         <li> ${sComunas[i].web}</li>
-                                           </div>
-                                             
-                                                    <p> ${sComunas[i].Reseña}</p>
-                                                       
-                                                         </div>`;
-                                  
-
-    }
-    console.log(seLection);
-
-}
 //guardamos el valor del select y lo imprime en la consola y la juntamos con el filter
-const funcionComunas = (dropDownMenu) => {
-    let stringComuna = dropDownMenu.options[dropDownMenu.selectedIndex].text;
-    console.log("siiiiii", stringComuna)
-    //revisar la funcion seLection con el innerHTML2
-    seLection(sComunas(stringComuna));
-    console.log("hola", stringComuna);
-    //stringComuna= "";
+
+  // const repitComuna = () => {
+  //     funcionComunas(stringComuna)
+  //     return repitComuna
+  // };
+  return containerHome;
+
 };
-  const repitComuna = () => {
-      funcionComunas(stringComuna)
-      return repitComuna
-  }
-
-    // export const Scolegios 
-
-
-
-
-
-        // document.getElementById('logOut').addEventListener('click', () => {
-        //   const container = document.getElementById('content');
-        //   container.innerHTML='';
-        //   logOut();
-        //   templateRegister();
-      // })
-    //}
